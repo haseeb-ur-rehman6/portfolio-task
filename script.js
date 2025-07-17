@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Testimonial slider functionality
     const sliderWrapper = document.querySelector('.slider-wrapper');
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.slider-dot');
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
             slides.forEach(slide => slide.classList.remove('active-slide'));
             dots.forEach(dot => dot.classList.remove('active'));
 
-            // Get the index of clicked dot
+            // Get index of clicked dot
             currentIndex = parseInt(this.getAttribute('data-index'));
 
             // Add active class to current slide and dot
@@ -26,5 +27,4 @@ document.addEventListener('DOMContentLoaded', function() {
             sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
         });
     });
-
-}); 
+});
