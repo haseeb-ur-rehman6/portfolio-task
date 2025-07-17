@@ -27,4 +27,44 @@ document.addEventListener('DOMContentLoaded', function() {
             sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
         });
     });
-});
+// Mobile menu toggle functionality
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    const body = document.body;
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navbar.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navbar.contains(event.target) && !menuToggle.contains(event.target) && navbar.classList.contains('active')) {
+                menuToggle.classList.remove('active');
+                navbar.classList.remove('active');
+                body.classList.remove('menu-open');
+            }
+        });
+
+        // Close menu when clicking on navbar links
+        const navLinks = navbar.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                menuToggle.classList.remove('active');
+                navbar.classList.remove('active');
+                body.classList.remove('menu-open');
+            });
+        });
+    }
+
+    // Handle window resize - reset mobile menu state when resizing to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navbar.classList.contains('active')) {
+            menuToggle.classList.remove('active');
+            navbar.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
+    });
+}); 
